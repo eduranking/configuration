@@ -22,24 +22,24 @@
     # Set to false if deployed behind another proxy/load balancer.
     NGINX_SET_X_FORWARDED_HEADERS: True
     DISCOVERY_URL_ROOT: 'http://localhost:{{ DISCOVERY_NGINX_PORT }}'
-    ecommerce_create_demo_data: true
+    ecommerce_create_demo_data: false
     credentials_create_demo_data: true
-    SANDBOX_ENABLE_DISCOVERY: true
-    SANDBOX_ENABLE_ECOMMERCE: true
-    SANDBOX_ENABLE_ANALYTICS_API: true
-    SANDBOX_ENABLE_INSIGHTS: true
-    SANDBOX_ENABLE_RABBITMQ: true
+    SANDBOX_ENABLE_DISCOVERY: false
+    SANDBOX_ENABLE_ECOMMERCE: false
+    SANDBOX_ENABLE_ANALYTICS_API: false
+    SANDBOX_ENABLE_INSIGHTS: false
+    SANDBOX_ENABLE_RABBITMQ: false
     JOURNALS_ENABLED: false
   roles:
     - role: swapfile
-      SWAPFILE_SIZE: 4GB
+      SWAPFILE_SIZE: 2GB #4GB
     - role: nginx
       nginx_sites:
-      - certs
-      - cms
+#      - certs
+#      - cms
       - lms
       - forum
-      - xqueue
+#      - xqueue
       nginx_default_sites:
       - lms
     - role: edxlocal
@@ -74,11 +74,11 @@
       when: SANDBOX_ENABLE_DISCOVERY
     - role: journals
       when: JOURNALS_ENABLED
-    - role: notifier
-      NOTIFIER_DIGEST_TASK_INTERVAL: 5
-    - role: xqueue
-      update_users: True
-    - certs
+#    - role: notifier
+#      NOTIFIER_DIGEST_TASK_INTERVAL: 5
+#    - role: xqueue
+#      update_users: True
+#    - certs
     - edx_ansible
     - role: datadog
       when: COMMON_ENABLE_DATADOG
