@@ -1,3 +1,19 @@
+- Role: nginx
+  - Added `NGINX_EDXAPP_PROXY_INTERCEPT_ERRORS` to be able to use custom static error pages for error responses from the LMS.
+
+- Role: analytics_api
+  - Added `basic_auth_exempted_paths` configuration for enterprise api endpoints
+
+- Role: edx_django_service
+  - Added optional `edx_django_service_allow_cors_headers` boolean option to pass CORS headers (`Access-Control-Allow-Origin` and `Access-Control-Allow-Methods`) on non basic-auth
+  calls to support `/api` endpoints for analytics_api.
+
+- Role: analytics_api
+  - Added `ANALYTICS_API_CORS_ORIGIN_WHITELIST` to allow CORS whitelisting of origins.
+
+- Role: edxapp
+  - `EDXAPP_X_FRAME_OPTIONS` added in studio to prevent clickjacking.
+
 - Role: edxapp
   - Added `EDXAPP_X_FRAME_OPTIONS` to prevent click jacking in LMS.
 
