@@ -100,7 +100,8 @@ CONFIGURATION_VERSION=${CONFIGURATION_VERSION-$OPENEDX_RELEASE}
 ## Clone the configuration repository and run Ansible
 ##
 cd /var/tmp
-git clone https://github.com/edx/configuration
+#git clone https://github.com/edx/configuration
+git clone https://github.com/eduranking/edx-configuration
 cd configuration
 git checkout $CONFIGURATION_VERSION
 git pull
@@ -114,6 +115,7 @@ sudo -H pip install -r requirements.txt
 ##
 ## Run the edx_sandbox.yml playbook in the configuration/playbooks directory
 ##
+#cd /var/tmp/configuration/playbooks && sudo -E ansible-playbook -c local ./edx_sandbox.yml -i "localhost," $EXTRA_VARS "$@"
 cd /var/tmp/configuration/playbooks && sudo -E ansible-playbook -c local ./edur_edx_sandbox.yml -i "localhost," $EXTRA_VARS "$@"
 ansible_status=$?
 
